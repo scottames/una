@@ -5,7 +5,7 @@
 [uv](https://docs.astral.sh/uv/concepts/projects/workspaces/)'s Workspace support has improved sufficiently that you can
 do monorepo stuff without this plugin.
 I put together a simple example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono)
-with a [Dockerfile](https://github.com/carderne/postmodern-mono/blob/main/apps/server/Dockerfile)**
+with a [Dockerfile](https://github.com/carderne/postmodern-mono/blob/main/apps/server/Dockerfile)
 
 You still can't build Python wheels in uv workspaces, as internal dependencies won't be included.
 So... if anyone thinks that is particularly important, maybe I'll revive this.
