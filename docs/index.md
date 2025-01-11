@@ -1,5 +1,15 @@
 # Una
 
+**⏸️ Project paused: This doesn't seem to be necessary any longer.**
+
+[uv](https://docs.astral.sh/uv/concepts/projects/workspaces/)'s Workspace support has improved sufficiently that you can
+do monorepo stuff without this plugin.
+I put together a simple example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono)
+with a [Dockerfile](https://github.com/carderne/postmodern-mono/blob/main/apps/server/Dockerfile)
+
+You still can't build Python wheels in uv workspaces, as internal dependencies won't be included.
+So... if anyone thinks that is particularly important, maybe I'll revive this.
+
 <div align="center">
   <img src="assets/logo.svg" width="100">
   <p>Easy monorepos with Python and uv</p>
@@ -19,8 +29,6 @@
 </a>
 
 </div>
-
-**Una is currently a bit broken since uv v0.4.0. Figuring out what to do next.**
 
 Una is a tool to build and productionise Python monorepos with [uv](https://docs.astral.sh/uv/).
 
