@@ -1,14 +1,9 @@
 # Una
 
-**⏸️ Project paused: This doesn't seem to be necessary any longer.**
-
-[uv](https://docs.astral.sh/uv/concepts/projects/workspaces/)'s Workspace support has improved sufficiently that you can
-do monorepo stuff without this plugin.
-I put together a simple example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono)
-with a [Dockerfile](https://github.com/carderne/postmodern-mono/blob/main/apps/server/Dockerfile)
-
-You still can't build Python wheels in uv workspaces, as internal dependencies won't be included.
-So... if anyone thinks that is particularly important, maybe I'll revive this.
+TLDR:
+- [uv](https://docs.astral.sh/uv/) is the best way to use Python, and it has some monorepo/workspace support.
+- If your build artifacts are Dockerfiles, uv is probably enough. See an example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
+- But if you want to build Python wheels (or similar) in monorepos, read on!
 
 <div align="center">
   <img src="assets/logo.svg" width="100">
