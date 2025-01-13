@@ -1,14 +1,9 @@
 # Una
 
-**⏸️ Project paused: This doesn't seem to be necessary any longer.**
-
-[uv](https://docs.astral.sh/uv/concepts/projects/workspaces/)'s Workspace support has improved sufficiently that you can
-do monorepo stuff without this plugin.
-I put together a simple example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono)
-with a [Dockerfile](https://github.com/carderne/postmodern-mono/blob/main/apps/server/Dockerfile)
-
-You still can't build Python wheels in uv workspaces, as internal dependencies won't be included.
-So... if anyone thinks that is particularly important, maybe I'll revive this.
+TLDR:
+- [uv](https://docs.astral.sh/uv/) is the best way to use Python, and it has some monorepo/workspace support.
+- If your build artifacts are Dockerfiles, uv is probably enough. See an example at [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
+- But if you want to build Python wheels (or similar) in monorepos, read on!
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/carderne/una/main/docs/assets/logo.svg" alt="Una logo" width="100" role="img">
@@ -39,7 +34,7 @@ Una solves this.
 No additional configuration is needed: if you have a functional uv Workspace, just add Una.
 It consists of the following two things:
 
-1. A CLI to ensure that all imports are correctly specified as dependencies.
+1. A CLI to ensure that all imports are correctly specified as dependencies (you don't have to use this).
 2. A build plugin that enables production builds of individual apps within a monorepo by injecting local dependencies and transitive third-party dependencies.
 
 Una doesn't try to replicate a full build system such as [Bazel](https://bazel.build/) or
