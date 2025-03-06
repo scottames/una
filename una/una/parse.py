@@ -2,7 +2,7 @@ import ast
 from functools import lru_cache
 from pathlib import Path
 
-from una.types import Imports
+from una.models import Imports
 
 
 def fetch_all_imports(paths: set[Path]) -> Imports:

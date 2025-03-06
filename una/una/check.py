@@ -4,7 +4,7 @@ import difflib
 from pathlib import Path
 
 from una import distributions, package_deps, parse, stdlib
-from una.types import CheckDiff, Imports, PackageDeps
+from una.models import CheckDiff, Imports, PackageDeps
 
 
 def check_package_deps(root: Path, ns: str, package: PackageDeps, alias: list[str]) -> CheckDiff:

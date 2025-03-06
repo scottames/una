@@ -2,7 +2,7 @@ from collections.abc import Iterable
 from pathlib import Path
 
 from una import config, consts
-from una.types import CheckDiff, Conf, UvSourceIsWorkspace
+from una.models import CheckDiff, Conf, UvSourceIsWorkspace
 
 
 def sync_package(diff: CheckDiff):

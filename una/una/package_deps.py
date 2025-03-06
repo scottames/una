@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 
 from una import config
-from una.types import ConfWrapper, ExtDep, IntDep, PackageDeps
+from una.models import ConfWrapper, ExtDep, IntDep, PackageDeps
 
 
 def get_packages(root: Path) -> list[PackageDeps]:

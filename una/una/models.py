@@ -142,7 +142,7 @@ class Conf:
 
         # deal with a non-existent tool.una.deps
         try:
-            sources = { k: v.to_dict() for k, v in self.tool.uv.sources.items() }
+            sources = {k: v.to_dict() for k, v in self.tool.uv.sources.items()}  # pyright:ignore[reportUnknownMemberType,reportUnknownVariableType,reportAttributeAccessIssue]
             tomldoc["tool"]["uv"]["sources"].update(sources)  # type: ignore[reportIndexIssues]
         except KeyError:
             una = tomlkit.table(True)

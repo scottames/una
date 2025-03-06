@@ -6,7 +6,7 @@ from functools import lru_cache, reduce
 from importlib.metadata import Distribution
 from typing import cast
 
-from una.types import ExtDep
+from una.models import ExtDep
 
 SUB_DEP_SEPARATORS = r"[\s!=;><\^~]"
 

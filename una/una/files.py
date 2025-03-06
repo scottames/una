@@ -156,8 +156,8 @@ def _update_root_pyproj(path: Path) -> str:
     if "tool" not in toml:
         toml["tool"] = tomlkit.table()
 
-    if "uv" not in toml["tool"]:
-        toml["tool"]["uv"] = tomlkit.table()
+    if "uv" not in toml["tool"]:  # pyright:ignore[reportOperatorIssue]
+        toml["tool"]["uv"] = tomlkit.table()  # pyright:ignore[reportIndexIssue]
 
     toml["tool"]["uv"].add("package", False)  # pyright:ignore[reportUnknownMemberType,reportIndexIssue,reportAttributeAccessIssue,reportArgumentType]
     toml["tool"]["uv"]["workspace"] = {"members": _EXAMPLE_MEMBERS}  # pyright:ignore[reportIndexIssue]

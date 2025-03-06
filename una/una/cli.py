@@ -6,7 +6,7 @@ from rich.theme import Theme
 from typer import Argument, Exit, Option, Typer
 
 from una import check, config, files, package_deps, sync
-from una.types import CheckDiff
+from una.models import CheckDiff
 
 app = Typer(name="una", no_args_is_help=True, add_completion=False)
 create = Typer(no_args_is_help=True)

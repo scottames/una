@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from una import consts
-from una.types import Conf
+from una.models import Conf
 
 
 def load_conf_from_str(s: str) -> Conf:
