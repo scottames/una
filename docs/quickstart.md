@@ -33,9 +33,8 @@ printer --> greeter --> cowsay-python
 ```
 
 You can do this by running the following:
+This checks all imports and ensures they are added to `project.dependencies` and `tool.uv.sources` in each pyproject.
 ```bash
-# this checks all imports and ensures they are added to
-# project.dependencies and tool.uv.sources in the each pyproject.toml
 uv run una sync
 ```
 
@@ -66,12 +65,19 @@ COPY dist dist
 RUN pip install dist/*.whl
 ```
 
-And run it:
+Build it:
+
 ```bash
 docker build --tag unarepo-printer .
+```
+
+And run it:
+```bash
 docker run --rm -it unarepo-printer \
   python -c 'from unarepo.printer import run; run()'
+```
 
+```
 ┌────────────────┐
 │Hello from una! │
 └────────────────┘
