@@ -152,6 +152,13 @@ def _update_root_pyproj(path: Path) -> str:
 
     ns: str = toml["project"]["name"]  # pyright:ignore[reportIndexIssue,reportAssignmentType]
     requires_python: str = toml["project"]["requires-python"]  # pyright:ignore[reportIndexIssue,reportAssignmentType]
+
+    if "tool" not in toml:
+        toml["tool"] = tomlkit.table()
+
+    if "uv" not in toml["tool"]:
+        toml["tool"]["uv"] = tomlkit.table()
+
     toml["tool"]["uv"].add("package", False)  # pyright:ignore[reportUnknownMemberType,reportIndexIssue,reportAttributeAccessIssue,reportArgumentType]
     toml["tool"]["uv"]["workspace"] = {"members": _EXAMPLE_MEMBERS}  # pyright:ignore[reportIndexIssue]
     toml["tool"]["una"] = {"namespace": ns, "requires-python": requires_python}  # pyright:ignore[reportIndexIssue]

@@ -10,7 +10,6 @@ And start your workspace:
 ```bash
 uv init unarepo   # choose another name if you prefer
 cd unarepo
-git init
 uv add --dev una
 ```
 
