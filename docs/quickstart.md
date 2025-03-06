@@ -16,7 +16,6 @@ uv add --dev una
 Then setup the Una workspace. This will generate a structure and an example lib and app.
 ```bash
 uv run una create workspace
-rm -rf src
 uv sync
 ```
 
@@ -52,7 +51,6 @@ Now you can build your app. Note that you **must** specify the `--wheel` paramet
 ```bash
 uvx --from build pyproject-build --installer=uv \
     --outdir=dist --wheel apps/printer
-# this will inject the cowsay-python external dependency
 ```
 
 And see the result:
@@ -71,5 +69,17 @@ RUN pip install dist/*.whl
 And run it:
 ```bash
 docker build --tag unarepo-printer .
-docker run --rm -it unarepo-printer python -c 'from unarepo.printer import run; run()'
+docker run --rm -it unarepo-printer \
+  python -c 'from unarepo.printer import run; run()'
+
+┌────────────────┐
+│Hello from una! │
+└────────────────┘
+               \
+                \
+                  ^__^
+                  (oo)\_______
+                  (__)\       )\/\
+                      ||----w |
+                      ||     ||
 ```

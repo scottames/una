@@ -140,9 +140,10 @@ class Conf:
         for dep in new_deps:
             tomldoc["project"]["dependencies"].add_line(dep)  # type: ignore[reportIndexIssues]
 
-        # deal with a a non-existent tool.una.deps
+        # deal with a non-existent tool.una.deps
         try:
-            tomldoc["tool"]["uv"]["sources"].update(self.tool.uv.sources)  # type: ignore[reportIndexIssues]
+            sources = { k: v.to_dict() for k, v in self.tool.uv.sources.items() }
+            tomldoc["tool"]["uv"]["sources"].update(sources)  # type: ignore[reportIndexIssues]
         except KeyError:
             una = tomlkit.table(True)
             deps = tomlkit.table()
