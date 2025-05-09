@@ -21,9 +21,18 @@ def get_package_confs(root: Path) -> list[ConfWrapper]:
 
 
 def _parse_deps_table(dep: str) -> ExtDep:
-    parts: list[str] = re.split(r"[\^~=!<>]", dep)
-    name, *_ = parts if parts else [""]
-    version = dep.replace(name, "")
+    # For URL dependencies need to preserve spaces after semicolons in
+    # environment markers
+    # see: https://peps.python.org/pep-0508/#complete-grammar
+    if " @ " in dep:
+        name_part, url_part = dep.split(" @ ", 1)
+        name = name_part.strip()
+        version = " @ " + url_part
+    else:
+        parts: list[str] = re.split(r"[\^~=!<>]", dep)
+        name, *_ = parts if parts else [""]
+        version = dep.replace(name, "")
+
     return ExtDep(name, version)
 
 

@@ -25,17 +25,23 @@ def test_distribution_packages_parse_contents_of_top_level_txt():
 
 
 def test_parse_package_name_from_dist_requires():
-    expected = {
-        "greenlet": "greenlet !=0.4.17",
-        "mysqlclient": "mysqlclient >=1.4.0 ; extra == 'mysql'",
-        "typing-extensions": "typing-extensions>=4.6.0",
-        "pymysql": "pymysql ; extra == 'pymysql'",
-        "one": "one<=0.4.17",
-        "two": "two^=0.4.17",
-        "three": "three~=0.4.17",
-    }
-    for k, v in expected.items():
-        assert k == distributions._parse_sub_package_name(v)
+    test_cases = [
+        # Regular dependencies
+        ("greenlet !=0.4.17", "greenlet"),
+        ("mysqlclient >=1.4.0 ; extra == 'mysql'", "mysqlclient"),
+        ("typing-extensions>=4.6.0", "typing-extensions"),
+        ("pymysql ; extra == 'pymysql'", "pymysql"),
+        ("one<=0.4.17", "one"),
+        ("two^=0.4.17", "two"),
+        ("three~=0.4.17", "three"),
+        # URL dependencies
+        ("name @ http://foo.com", "name"),
+        ("name[fred,bar] @ http://foo.com", "name[fred,bar]"),
+        ("name @ http://foo.com ; python_version=='2.7'", "name"),
+        ("name[fred,bar] @ http://foo.com ; python_version=='2.7'", "name[fred,bar]"),
+    ]
+    for dependency, expected_name in test_cases:
+        assert expected_name == distributions._parse_sub_package_name(dependency)
 
 
 def test_distribution_sub_packages():
