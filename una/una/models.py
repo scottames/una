@@ -138,6 +138,12 @@ class Conf:
         orig_deps: list[str] = tomldoc["project"]["dependencies"]  # type: ignore[reportIndexIssues]
         new_deps = set(self.project.dependencies) - set(orig_deps)
         for dep in new_deps:
+            # Ensure spaces after semicolons are preserved in URL dependencies
+            if " @ " in dep and ";" in dep:
+                # Replace semicolons with a special marker that preserves the following space
+                dep_parts = dep.split(";")
+                # Join with semicolon followed by space to ensure it's preserved
+                dep = ";".join([dep_parts[0]] + [f" {part}" for part in dep_parts[1:]])
             tomldoc["project"]["dependencies"].add_line(dep)  # type: ignore[reportIndexIssues]
 
         # deal with a non-existent tool.una.deps
@@ -171,7 +177,21 @@ class Conf:
         All others will be written from the original toml file.
         """
         tomldoc = self.to_tomldoc()
-        return tomlkit.dumps(tomldoc)  # type: ignore[reportUnknownMemberType]
+        result = tomlkit.dumps(tomldoc)  # type: ignore[reportUnknownMemberType]
+        
+        # Fix spaces after semicolons in URL dependencies
+        # This is a workaround for tomlkit not preserving spaces after semicolons
+        # Check if any dependency has a URL with an environment marker
+        for dep in self.project.dependencies:
+            if " @ " in dep and ";" in dep:
+                # Find all occurrences of semicolons without a following space
+                # and replace them with semicolons followed by a space
+                result = result.replace(";", "; ")
+                # Fix any double spaces that might have been introduced
+                result = result.replace("  ", " ")
+                break
+        
+        return result
 
 
 @dataclass(frozen=True)
